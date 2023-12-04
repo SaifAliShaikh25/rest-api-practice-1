@@ -30,4 +30,8 @@ public class UserService {
         else
             throw new UserNotFoundException("id: "+id+" not found");
     }
+
+    public void deleteUser(int id){
+        userRepository.deleteById(id);
+    }
 }
