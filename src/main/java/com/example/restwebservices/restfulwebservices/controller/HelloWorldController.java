@@ -46,4 +46,53 @@ public class HelloWorldController {
         return message;
     }
 
+
+    @GetMapping(path = "/name", params = "version=1")
+    public String getName(){
+        return "Saif";
+    }
+
+    @GetMapping(path = "/name", params = "version=2")
+    public String getFullName(){
+        return "Saif Ali Shaikh";
+    }
+
+    @GetMapping( path = "/name", headers = "X-API-VERSION=1")
+    public HelloWorld getMessageUsingHeaders(){
+        return HelloWorld.builder().message("Message returned from version 1 of X-API")
+                .build();
+    }
+
+    @GetMapping( path = "/name", headers = "X-API-VERSION=2")
+    public HelloWorld getMessageUsingHeadersV2(){
+        return HelloWorld.builder().message("Message returned from version 2 of X-API")
+                .build();
+    }
+
+    @GetMapping( path = "/name/v1")
+    public HelloWorld getMessageUsingURLV1(){
+        return HelloWorld.builder()
+                .message("Message returned from version 1 of URL")
+                .build();
+    }
+    @GetMapping( path = "/name/v2")
+    public HelloWorld getMessageUsingURLV2(){
+        return HelloWorld.builder()
+                .message("Message returned from version 2 of URL")
+                .build();
+    }
+
+    @GetMapping( path = "/name", produces = "application/vnd.company.app-v1+json")
+    public HelloWorld getMessageUsingContentV1(){
+        return HelloWorld.builder()
+                .message("Message returned from version 1 of content")
+                .build();
+    }
+
+    @GetMapping( path = "/name", produces = "application/vnd.company.app-v2+json")
+    public HelloWorld getMessageUsingContentV2(){
+        return HelloWorld.builder()
+                .message("Message returned from version 2 of content")
+                .build();
+    }
 }

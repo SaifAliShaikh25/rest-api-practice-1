@@ -23,10 +23,10 @@ public class UserService {
        return userRepository.save(user);
     }
 
-    public Optional<User> getUser(int id){
+    public User getUser(int id){
         Optional<User> user = userRepository.findById(id);
         if(user.isPresent())
-            return userRepository.findById(id);
+            return userRepository.findById(id).get();
         else
             throw new UserNotFoundException("id: "+id+" not found");
     }
