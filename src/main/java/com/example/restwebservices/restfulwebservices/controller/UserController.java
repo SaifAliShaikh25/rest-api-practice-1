@@ -2,8 +2,10 @@ package com.example.restwebservices.restfulwebservices.controller;
 
 import com.example.restwebservices.restfulwebservices.entity.User;
 import com.example.restwebservices.restfulwebservices.service.UserService;
+import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -43,6 +45,7 @@ public class UserController {
         return "Rest api working fine";
     }
 
+    @Hidden  //Will be used if Authentication is applied to hide this api in Swagger UI
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable("id") int id){
         userService.deleteUser(id);
